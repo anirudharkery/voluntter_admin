@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 
 export default defineConfig({
-  base: '/voluntter_admin/',
+  base: './', // Change from '/voluntter_admin/' to './'
   plugins: [react()],
   resolve: {
     alias: {
