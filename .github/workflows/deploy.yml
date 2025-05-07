@@ -20,6 +20,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Copy direct.html to dist
+        run: cp direct.html dist/
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
       - name: Deploy
