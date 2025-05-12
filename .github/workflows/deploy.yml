@@ -11,22 +11,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
+      
       - name: Install dependencies
         run: npm install
+      
       - name: Build
         run: npm run build
-      - name: Copy test HTML files to dist
+      
+      - name: Create debugging files
         run: |
-          cp direct.html dist/
-          cp simple.html dist/
-          cp public/debug.html dist/
-      - name: Create 404.html
-        run: cp dist/index.html dist/404.html
+          echo '<!DOCTYPE html><html><head><title>Debug Page</title></head><body><h1>Debug Page</h1></body></html>' > dist/debug.html
+          cp dist/index.html dist/404.html
+      
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
