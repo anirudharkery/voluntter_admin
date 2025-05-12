@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug Network Requests</title>
+</head>
+<body>
+  <h1>Network Request Debugger</h1>
+  <p>Open the browser console (F12) to see network requests logged.</p>
+  
+  <button id="testBtn">Test Loading Main Scripts</button>
+  
+  <div id="results"></div>
+  
+  <script>
+    document.getElementById('testBtn').addEventListener('click', async function() {
+      const resultsEl = document.getElementById('results');
+      
+      async function testFetch(url) {
+        try {
+          const start = performance.now();
+          const response = await fetch(url);
+          const end = performance.now();
+          
+          if (response.ok) {
+            resultsEl.innerHTML += `<p style="color:green">✓ Success: ${url} (${Math.round(end-start)}ms)</p>`;
+            return true;
+          } else {
+            resultsEl.innerHTML += `<p style="color:red">✗ Failed: ${url} - Status: ${response.status}</p>`;
+            return false;
+          }
+        } catch (error) {
+          resultsEl.innerHTML += `<p style="color:red">✗ Error: ${url} - ${error.message}</p>`;
+          return false;
+        }
+      }
+      
+      resultsEl.innerHTML = '<h3>Testing resource loading...</h3>';
+      
+      await testFetch('./assets/index-B2iB2RgC.js');
+      await testFetch('./assets/index-C8DYzFUC.css');
+      await testFetch('https://unpkg.com/leaflet@1.9.4/dist/leaflet.css');
+    });
+  </script>
+</body>
+</html>

@@ -24,6 +24,7 @@ jobs:
         run: |
           cp direct.html dist/
           cp simple.html dist/
+          cp public/debug.html dist/
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
       - name: Deploy
