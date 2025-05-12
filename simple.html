@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Test Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f0f0f0; color: #333; padding: 20px; }
+    h1 { color: #0066cc; }
+    .box { background-color: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>Simple Test Page</h1>
+    <p>This is a completely self-contained HTML file with no external dependencies.</p>
+    <p>Current time: <span id="time"></span></p>
+    <button onclick="changeColor()">Change Color</button>
+  </div>
+  
+  <script>
+    // Simple JavaScript that doesn't depend on any external files
+    document.getElementById('time').textContent = new Date().toLocaleTimeString();
+    
+    function changeColor() {
+      const colors = ['#ff6b6b', '#48dbfb', '#1dd1a1', '#feca57', '#ff9ff3'];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      document.querySelector('.box').style.backgroundColor = randomColor;
+    }
+  </script>
+</body>
+</html>
