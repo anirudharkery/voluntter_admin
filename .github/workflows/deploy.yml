@@ -12,25 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: 'npm'
-      
-      - name: Install dependencies
-        run: npm install
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Create debugging files
-        run: |
-          echo '<!DOCTYPE html><html><head><title>Debug Page</title></head><body><h1>Debug Page</h1></body></html>' > dist/debug.html
-          cp dist/index.html dist/404.html
-      
-      - name: Deploy
+      - name: Deploy basic HTML
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./public
